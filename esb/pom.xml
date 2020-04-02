@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>esb</artifactId>
+    <packaging>pom</packaging>
+
+	<parent>
+	    <groupId>com.talend.se.platform</groupId>
+        <artifactId>tesb-parent</artifactId>
+        <version>${revision}</version>
+        <relativePath>../tesb-parent/pom.xml</relativePath>
+ 	</parent>
+
+    <name>platform :: apache-esb</name>
+    <description>Platform pom that uses dependencyManagement imports of parent poms from component Apache projects to establish a consistent baseline set of dependency versions for comparison with the talend-esb platform pom.</description>
+
+    <!-- note that the order is important here.  Specific components must come
+    prior to composite components in order to ensure specific versions
+    are preserved. -->
+
+    <dependencyManagement>
+        <dependencies>            
+            <dependency>
+                <groupId>com.talend.se.platform</groupId>
+                <artifactId>cxf</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.talend.se.platform</groupId>
+                <artifactId>camel</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.talend.se.platform</groupId>
+                <artifactId>activemq</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.talend.se.platform</groupId>
+                <artifactId>karaf</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

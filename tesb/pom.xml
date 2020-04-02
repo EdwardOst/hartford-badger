@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>tesb</artifactId>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>com.talend.se.platform</groupId>
+		<artifactId>tesb-parent</artifactId>
+		<version>${revision}</version>
+        <relativePath>../tesb-parent/pom.xml</relativePath>
+	</parent>
+
+	<name>platform :: talend</name>
+	<description>This platform bom pom uses dependencyManagement imports 
+for component Apache projects and Talend ESB to establish a consistent
+set of dependency versions for use by apps built on Talend ESB.
+
+It also provides a single point of control to tweak dependencies if needed, 
+e.g. the spring framework to exclude commons logging.
+
+In general, properties defined here should match
+those found in the tesb pom for org.talend.esb:esb-parent.
+
+It adds the Spring bom pom and used by Talend ESB. 
+</description>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.talend.se.platform</groupId>
+				<artifactId>esb</artifactId>
+				<version>${project.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+	        <dependency>
+	            <groupId>org.springframework</groupId>
+	            <artifactId>spring-framework-bom</artifactId>
+	            <version>${spring.version}</version>
+	            <type>pom</type>
+	            <scope>import</scope>
+	        </dependency>
+		</dependencies>
+	</dependencyManagement>
+
+</project>

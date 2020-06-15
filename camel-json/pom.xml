@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.talend.se.hartford.badger</groupId>
+	<artifactId>camel-json</artifactId>
+	<parent>
+		<groupId>com.talend.se.hartford</groupId>
+		<artifactId>badger-parent</artifactId>
+		<version>${revision}</version>
+        <relativePath>../badger-parent/pom.xml</relativePath>
+	</parent>
+
+	<name>camel :: json :: example</name>
+	<description>json data format and schema validation example</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.talend.se.platform</groupId>
+				<artifactId>tesb</artifactId>
+				<version>7.3.1</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-jackson</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-json-validator</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>

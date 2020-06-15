@@ -20,5 +20,7 @@
 		<module>karaf</module>
 		<module>esb</module>
 		<module>tesb</module>
+		<module>avro-example</module>
+		<module>camel-json</module>
 	</modules>
 </project>

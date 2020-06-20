@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -9,10 +10,10 @@
 		<groupId>com.talend.se.platform</groupId>
 		<artifactId>tesb-parent</artifactId>
 		<version>${revision}</version>
-        <relativePath>../tesb-parent/pom.xml</relativePath>
+		<relativePath>../tesb-parent/pom.xml</relativePath>
 	</parent>
 
-	<name>platform :: talend</name>
+	<name>platform :: talend :: tesb</name>
 	<description>This platform bom pom uses dependencyManagement imports 
 for component Apache projects and Talend ESB to establish a consistent
 set of dependency versions for use by apps built on Talend ESB.
@@ -23,7 +24,12 @@ e.g. the spring framework to exclude commons logging.
 In general, properties defined here should match
 those found in the tesb pom for org.talend.esb:esb-parent.
 
-It adds the Spring bom pom and used by Talend ESB. 
+The tesb adds the Spring bom pom used by Talend ESB.
+
+The tesb does not depend on Spring Boot.
+
+Projects seeking to import the tesb with Spring Boot should use a version of Spring Boot compatible with the version of Spring used here.
+Such projects should import the org.springframework.boot:spring-boot-dependencies pom.
 </description>
 
 	<dependencyManagement>
@@ -35,14 +41,30 @@ It adds the Spring bom pom and used by Talend ESB.
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-	        <dependency>
-	            <groupId>org.springframework</groupId>
-	            <artifactId>spring-framework-bom</artifactId>
-	            <version>${spring.version}</version>
-	            <type>pom</type>
-	            <scope>import</scope>
-	        </dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>io.repaint.maven</groupId>
+				<artifactId>tiles-maven-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<buildSmells>dependencymanagement</buildSmells>
+					<filtering>true</filtering>
+					<applyBefore>com.talend.se.platform:tesb-parent</applyBefore>
+					<tiles>
+						<tile>com.talend.se.platform:apache-license:${project.version}</tile>
+						<tile>com.talend.se.platform:tile-spring-bom:${project.version}</tile>
+					</tiles>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

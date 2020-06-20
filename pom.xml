@@ -5,11 +5,16 @@
 
 	<groupId>com.talend.se.hartford</groupId>
 	<artifactId>badger</artifactId>
-	<version>7.3.1-SNAPSHOT</version>
+	<version>${revision}</version>
 	<packaging>pom</packaging>
 
 	<name>Hartford :: Badger :: Ingest</name>
 	<description>ingest and curation microservice framework</description>
+
+	<properties>
+		<revision>7.3.1</revision>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 
 	<modules>
 		<module>badger-parent</module>
@@ -22,5 +27,11 @@
 		<module>tesb</module>
 		<module>avro-example</module>
 		<module>camel-json</module>
+		<module>dynamic-endpoint</module>
+		<module>tesb-bom</module>
+		<module>tesb-modules</module>
+		<module>examples-parent</module>
+		<module>apache-license</module>
+		<module>tile-spring-bom</module>
 	</modules>
 </project>

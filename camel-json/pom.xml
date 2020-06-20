@@ -16,7 +16,6 @@
 	<description>json data format and schema validation example</description>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<dependencyManagement>

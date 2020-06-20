@@ -6,25 +6,51 @@
 	<groupId>com.talend.se.hartford</groupId>
 	<artifactId>badger-parent</artifactId>
 	<version>${revision}</version>
-
 	<packaging>pom</packaging>
-	<name>parent pom for Hartford badger demo</name>
 
-	<dependencies>
-			<dependency>
-				<groupId>org.apache.camel</groupId>
-				<artifactId>camel-core</artifactId>
-			</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+	<name>parent pom for Hartford badger demo</name>
+	<description>
+Common build settings for Hartford example modules used to provide single point of control for the POM versioning using the maven-flatten-plugin.
+Separate parent pom hierarchies are provided for the ESB platform poms (used to manage dependencies) and for the example projects.
+	</description>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<revision>7.3.1</revision>
+		<flatten-maven-plugin.version>1.2.1</flatten-maven-plugin.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
+				<version>${flatten-maven-plugin.version}</version>
+				<configuration>
+					<flattenMode>bom</flattenMode>
+					<updatePomFile>true</updatePomFile>
+				</configuration>
+				<executions>
+					<execution>
+						<id>flatten</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>flatten</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>flatten.clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
 
 </project>

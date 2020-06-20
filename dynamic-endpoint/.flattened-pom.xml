@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.talend.se.hartford</groupId>
+  <artifactId>dynamic-endpoint</artifactId>
+  <version>7.3.1</version>
+  <name>talend :: dynamic-endpoint</name>
+  <description>Route to create other short routes with a dynamic endpoint supported by metadata</description>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <flatten-maven-plugin.version>1.2.1</flatten-maven-plugin.version>
+    <revision>7.3.1</revision>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-core</artifactId>
+      <version>2.24.2</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-spring-boot-starter</artifactId>
+      <version>2.24.2</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+</project>

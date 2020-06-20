@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>activemq</artifactId>
-	<packaging>pom</packaging>
+	<artifactId>tile-activemq-bom</artifactId>
+	<packaging>tile</packaging>
 	<parent>
 	    <groupId>com.talend.se.platform</groupId>
         <artifactId>tesb-parent</artifactId>
@@ -12,18 +12,29 @@
         <relativePath>../tesb-parent/pom.xml</relativePath>
  	</parent>
 
-	<name>platform :: apache-activemq</name>
+	<name>platform :: apache :: activemq</name>
 	<description>Platform pom provides a single point of control to import dependencyManagement from org.apache.activemq:activemq-parent.</description>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.apache.activemq</groupId>
-				<artifactId>activemq-parent</artifactId>
-				<version>${activemq.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>io.repaint.maven</groupId>
+				<artifactId>tiles-maven-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<buildSmells>dependencymanagement</buildSmells>
+					<filtering>true</filtering>
+					<tiles>
+						<tile>com.talend.se.platform:tile-apache-license:${project.version}</tile>
+						<tile>com.talend.se.platform:tile-tesb-versions:${project.version}</tile>
+					</tiles>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
 </project>

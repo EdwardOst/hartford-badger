@@ -1,0 +1,37 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+		<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-parent</artifactId>
+				<version>3.3.4</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- OLD
+				These jars are outputs of the Apache build, but they are not part of 
+				the cxf parent pom. They are taken from the cxf distribution pom. In general, 
+				we are only including artifacts which match the cxf version. This rules out 
+				some tools and dependencies that are in the distribution but not included 
+				here.
+				
+				With cxf 3.3.4 many of these are now in the cxf parent bom and no longer
+				need to be explicitly added here.
+			-->
+
+			<!-- tools -->
+	        <dependency>
+	            <groupId>org.apache.cxf</groupId>
+	            <artifactId>cxf-tools-wsdlto-databinding-jaxb</artifactId>
+	            <version>${cxf.version}</version>
+	        </dependency>
+
+    	</dependencies>
+	</dependencyManagement>
+	
+</project>

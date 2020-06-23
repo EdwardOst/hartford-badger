@@ -9,6 +9,6 @@ public class EndpointFactoryRoute extends RouteBuilder {
 	@Override
     public void configure() {
         from("timer://world?fixedRate=true&period=1000")
-            .log("hello world");
+            .log("${{mymessage}}");
     }
 }

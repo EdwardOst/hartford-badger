@@ -19,19 +19,19 @@
 	<modules>
 		<module>badger-parent</module>
 		<module>tesb-parent</module>
-		<module>cxf</module>
-		<module>camel</module>
-		<module>activemq</module>
-		<module>karaf</module>
+		<module>tile-apache-license</module>
+		<module>tile-tesb-versions</module>
+		<module>tile-cxf-bom</module>
+		<module>camel-bom</module>
+		<module>tile-activemq-bom</module>
+		<module>tile-karaf-bom</module>
+		<module>tile-spring-bom</module>
 		<module>esb</module>
 		<module>tesb</module>
-		<module>avro-example</module>
-		<module>camel-json</module>
+		<module>camel-example-parent</module>
+		<module>camel-example-avro</module>
+		<module>camel-example-json</module>
 		<module>dynamic-endpoint</module>
-		<module>tesb-bom</module>
-		<module>tesb-modules</module>
-		<module>examples-parent</module>
-		<module>apache-license</module>
-		<module>tile-spring-bom</module>
+		<module>camel-spring-boot-bom</module>
 	</modules>
 </project>

@@ -3,20 +3,31 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.talend.se.platform</groupId>
-  <artifactId>tesb-parent</artifactId>
+  <artifactId>camel-bom</artifactId>
   <version>7.3.1</version>
   <packaging>pom</packaging>
-  <name>platform :: talend :: tesb :: parent</name>
-  <description>Align dependencyManagement from Apache projects with Talend project versions using maven-flatten-plugin and common property settings.</description>
+  <name>platform :: apache :: camel</name>
+  <description>Align dependencyManagement import from org.apache.camel:camel-parent with Talend project version.</description>
   <properties>
     <karaf.version>4.2.7</karaf.version>
+    <cxf.version>3.3.4</cxf.version>
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     <spring.version>5.1.9.RELEASE</spring.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <activemq.version>5.15.10</activemq.version>
     <flatten-maven-plugin.version>1.2.1</flatten-maven-plugin.version>
-    <revision>7.3.1</revision>
-    <cxf.version>3.3.4</cxf.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <camel.version>2.24.2</camel.version>
+    <revision>7.3.1</revision>
   </properties>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-parent</artifactId>
+        <version>${camel.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 </project>

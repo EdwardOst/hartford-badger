@@ -1,0 +1,6 @@
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "age": 21,
+  "extra_field": "should not be here"
+}

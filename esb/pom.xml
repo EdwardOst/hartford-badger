@@ -34,10 +34,10 @@
 						<tile>com.talend.se.platform:tile-apache-license:${project.version}</tile>
 						<!-- note that the order is important here. Specific components must come 
 							prior to composite components in order to ensure specific versions are preserved. -->
-						<tile>com.talend.se.platform:tile-cxf-bom:${project.version}</tile>
+						<!-- tile>com.talend.se.platform:tile-cxf-bom:${project.version}</tile -->
 						<tile>com.talend.se.platform:tile-camel-bom:${project.version}</tile>
-						<tile>com.talend.se.platform:tile-activemq-bom:${project.version}</tile>
-						<tile>com.talend.se.platform:tile-karaf-bom:${project.version}</tile>
+						<!-- tile>com.talend.se.platform:tile-activemq-bom:${project.version}</tile -->
+						<!--  tile>com.talend.se.platform:tile-karaf-bom:${project.version}</tile -->
 					</tiles>
 				</configuration>
 			</plugin>

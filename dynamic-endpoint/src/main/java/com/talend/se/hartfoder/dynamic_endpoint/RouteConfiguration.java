@@ -4,14 +4,14 @@ import org.apache.camel.builder.RouteBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-//@Configuration
+@Configuration
 public class RouteConfiguration {
 
-//	  @Bean
+	  @Bean
 	  RouteBuilder myRouter() {
 	    return new RouteBuilder() {
 
-//	      @Override
+	      @Override
 	      public void configure() throws Exception {
 	        from("timer://earth?fixedRate=true&period=3000")
 	        .log("hello earth");

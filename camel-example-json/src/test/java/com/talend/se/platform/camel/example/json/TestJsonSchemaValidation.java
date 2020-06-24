@@ -5,10 +5,8 @@ import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Set;
 
-import org.apache.camel.CamelContext;
 import org.apache.camel.CamelExecutionException;
 import org.apache.camel.Endpoint;
 import org.apache.camel.RoutesBuilder;
@@ -24,22 +22,18 @@ import com.networknt.schema.ValidationMessage;
 import org.apache.camel.component.jsonvalidator.JsonValidationException;
 import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;
-import org.hamcrest.core.IsInstanceOf;
 
 public class TestJsonSchemaValidation extends CamelTestSupport {
 
+	private static final String INPUT_URI = "direct:test-json-schema-validation";
+	private static final String DATA_DIR = "/Users/eost/git/hartford-badger/camel-example-json/src/test/resources";
+	private static final String SCHEMA_PATH= "sample-person-schema.json";
+
 	private static Logger logger = LoggerFactory.getLogger(TestJsonSchemaValidation.class);
-	
-	private Endpoint testEndpoint;
-	private final String filepath = "/Users/eost/git/hartford-badger/camel-example-json/src/test/resources";
 	
 	@Override
 	protected RoutesBuilder createRouteBuilder() throws Exception {
-		final String schema = "sample-person-schema.json";
-
-		CamelContext camelContext = context();
-		testEndpoint = camelContext.getComponent("direct").createEndpoint("direct:test-json-schema-vaidation");
-		return new CamelJsonValidator(schema, testEndpoint);
+		return new CamelJsonValidator(SCHEMA_PATH, INPUT_URI);
 	}
 
 	@Rule
@@ -48,7 +42,7 @@ public class TestJsonSchemaValidation extends CamelTestSupport {
 	@Test
 	public void testMissingRequiredField() throws IOException, CamelExecutionException {
 		final String filename = "sample-person-message-invalid-missing-last-name.json";
-		String message = Files.readString(Path.of(filepath + "/" + filename));
+		String message = Files.readString(Path.of(DATA_DIR + "/" + filename));
 
 		thrown.expect(CamelExecutionException.class);
 		thrown.expectCause(new JsonValidationMatches("required", "1028", "lastName"));
@@ -56,7 +50,7 @@ public class TestJsonSchemaValidation extends CamelTestSupport {
 		try {
 			String result = fluentTemplate()
 								.withBody(message)
-								.to(testEndpoint)
+								.to(INPUT_URI)
 								.request(String.class);
 			logger.debug(result);
 		} catch (CamelExecutionException e) {
@@ -72,7 +66,7 @@ public class TestJsonSchemaValidation extends CamelTestSupport {
 	@Test
 	public void testExtraField() throws IOException, CamelExecutionException {
 		final String filename = "sample-person-message-invalid-extra-field.json";
-		String message = Files.readString(Path.of(filepath + "/" + filename));
+		String message = Files.readString(Path.of(DATA_DIR + "/" + filename));
 
 		thrown.expect(CamelExecutionException.class);
 		thrown.expectCause(new JsonValidationMatches("additionalProperties", "1001", "extra_field"));
@@ -80,7 +74,7 @@ public class TestJsonSchemaValidation extends CamelTestSupport {
 		try {
 			String result = fluentTemplate()
 								.withBody(message)
-								.to(testEndpoint)
+								.to(INPUT_URI)
 								.request(String.class);
 			logger.debug(result);
 		} catch (CamelExecutionException e) {
@@ -96,7 +90,7 @@ public class TestJsonSchemaValidation extends CamelTestSupport {
 	@Test
 	public void testNonNumericField() throws IOException, CamelExecutionException {
 		final String filename = "sample-person-message-invalid-non-numeric-age.json";
-		String message = Files.readString(Path.of(filepath + "/" + filename));
+		String message = Files.readString(Path.of(DATA_DIR + "/" + filename));
 
 		thrown.expect(CamelExecutionException.class);
 		thrown.expectCause(new JsonValidationMatches("type", "1029", "string"));
@@ -104,7 +98,7 @@ public class TestJsonSchemaValidation extends CamelTestSupport {
 		try {
 			String result = fluentTemplate()
 								.withBody(message)
-								.to(testEndpoint)
+								.to(INPUT_URI)
 								.request(String.class);
 			logger.debug(result);
 		} catch (CamelExecutionException e) {
@@ -120,11 +114,11 @@ public class TestJsonSchemaValidation extends CamelTestSupport {
 	@Test
 	public void testValidMessage() throws IOException, CamelExecutionException {
 		final String filename = "sample-person-message.json";
-		String message = Files.readString(Path.of(filepath + "/" + filename));
+		String message = Files.readString(Path.of(DATA_DIR + "/" + filename));
 
 		String result = fluentTemplate()
 							.withBody(message)
-							.to(testEndpoint)
+							.to(INPUT_URI)
 							.request(String.class);
 		logger.debug(result);
 		assertEquals(message, result);

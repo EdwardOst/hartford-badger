@@ -14,12 +14,12 @@ public class CamelJsonValidator extends RouteBuilder {
 
 	private static final Logger logger = LoggerFactory.getLogger(CamelJsonValidator.class);
 
-	private final String schema;
+	private final String schemaPath;
 	
-	private Endpoint sourceEndpoint;
+	private String sourceEndpoint;
 	
-	public CamelJsonValidator(final String schema, final Endpoint sourceEndpoint) {
-		this.schema = schema;
+	public CamelJsonValidator(final String schema, final String sourceEndpoint) {
+		this.schemaPath = Optional.of(schema).orElseThrow( ()-> new NullArgumentException("schema_path") );
 		this.sourceEndpoint = Optional.of(sourceEndpoint).orElseThrow( ()-> new NullArgumentException("sourceEndpoint") );
 	}
 	
@@ -28,17 +28,17 @@ public class CamelJsonValidator extends RouteBuilder {
 		from(sourceEndpoint)
 		.convertBodyTo(String.class)
 		.log(LoggingLevel.WARN, logger, "message: ${body}")
-		.to("json-validator:" + schema)
+		.to("json-validator:" + schemaPath)
 		.to("log:json-validation?showHeaders=true");
 
 //		.log(LoggingLevel.WARN, logger, "validation: ${body}");
 	}
 
-	public String getSchema() {
-		return schema;
+	public String getSchemaPath() {
+		return schemaPath;
 	}
 
-	public Endpoint getSourceEndpoint() {
+	public String getSourceEndpoint() {
 		return sourceEndpoint;
 	}
 

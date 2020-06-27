@@ -1,0 +1,27 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>talend-dynamic-endpoint</artifactId>
+	<parent>
+		<groupId>com.talend.se.platform</groupId>
+		<artifactId>camel-example-parent</artifactId>
+		<version>${revision}</version>
+		<relativePath>../camel-example-parent/pom.xml</relativePath>
+	</parent>
+
+	<name>platform :: talend :: camel :: dynamic-endpoint</name>
+	<description>Talend Camel dynamic endpoint</description>
+
+	<properties>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-jackson</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>

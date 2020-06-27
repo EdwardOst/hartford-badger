@@ -1,4 +1,4 @@
-package com.talend.se.platform.camel.example.json.dataformat;
+package com.talend.se.platform.camel.tde;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.dataformat.JsonLibrary;
@@ -14,13 +14,13 @@ import org.apache.camel.Processor;
 import java.util.Map;
 
 
-public class CamelJsonDataFormat extends RouteBuilder {
+public class TalendDynamicEndpointExampleUnmarshal extends RouteBuilder {
 
-	private static final Logger logger = LoggerFactory.getLogger(CamelJsonDataFormat.class);
+	private static final Logger logger = LoggerFactory.getLogger(TalendDynamicEndpointExampleUnmarshal.class);
 
 	private String sourceEndpoint;
 	
-	public CamelJsonDataFormat(final String sourceEndpoint) {
+	public TalendDynamicEndpointExampleUnmarshal(final String sourceEndpoint) {
 		this.sourceEndpoint = Optional.of(sourceEndpoint).orElseThrow( ()-> new NullArgumentException("sourceEndpoint") );
 	}
 	

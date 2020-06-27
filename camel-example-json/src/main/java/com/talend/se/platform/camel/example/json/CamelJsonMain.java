@@ -1,13 +1,6 @@
 package com.talend.se.platform.camel.example.json;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-
-import org.apache.camel.CamelContext;
 import org.apache.camel.main.Main;
-import org.apache.camel.Endpoint;
-import org.apache.camel.LoggingLevel;
-import org.apache.camel.builder.RouteBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

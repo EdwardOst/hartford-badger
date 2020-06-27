@@ -3,10 +3,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.talend.se.platform</groupId>
-  <artifactId>camel-example-json</artifactId>
+  <artifactId>camel-example-xml</artifactId>
   <version>1.0.0</version>
-  <name>platform :: apache :: camel :: example :: json</name>
-  <description>json data format and schema validation example</description>
+  <name>platform :: apache :: camel :: example :: xml :: validator</name>
+  <description>Camel XML validator example</description>
   <properties>
     <karaf.version>4.2.7</karaf.version>
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -22,18 +22,6 @@
     <camel.version>2.24.2</camel.version>
   </properties>
   <dependencies>
-    <dependency>
-      <groupId>com.networknt</groupId>
-      <artifactId>json-schema-validator</artifactId>
-      <version>0.1.25</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-json-validator</artifactId>
-      <version>2.24.2</version>
-      <scope>compile</scope>
-    </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-core</artifactId>

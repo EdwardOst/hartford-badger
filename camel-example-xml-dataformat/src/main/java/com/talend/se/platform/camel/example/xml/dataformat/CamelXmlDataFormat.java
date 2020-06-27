@@ -1,24 +1,28 @@
-package com.talend.se.platform.camel.example.json;
+package com.talend.se.platform.camel.example.xml.dataformat;
 
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.model.dataformat.JacksonXMLDataFormat;
 import org.apache.commons.lang.NullArgumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
+import org.apache.camel.Endpoint;
+import org.apache.camel.Exchange;
 import org.apache.camel.LoggingLevel;
+import org.apache.camel.Processor;
+import java.util.Map;
+import java.util.Map.Entry;
 
-public class CamelJsonValidator extends RouteBuilder {
 
-	private static final Logger logger = LoggerFactory.getLogger(CamelJsonValidator.class);
+public class CamelXmlDataFormat extends RouteBuilder {
 
-	private final String schemaPath;
-	
+	private static final Logger logger = LoggerFactory.getLogger(CamelXmlDataFormat.class);
+
 	private String sourceEndpoint;
 	
-	public CamelJsonValidator(final String schema, final String sourceEndpoint) {
-		this.schemaPath = Optional.of(schema).orElseThrow( ()-> new NullArgumentException("schema_path") );
+	public CamelXmlDataFormat(final String sourceEndpoint) {
 		this.sourceEndpoint = Optional.of(sourceEndpoint).orElseThrow( ()-> new NullArgumentException("sourceEndpoint") );
 	}
 	
@@ -27,14 +31,9 @@ public class CamelJsonValidator extends RouteBuilder {
 		from(sourceEndpoint)
 		.convertBodyTo(String.class)
 		.log(LoggingLevel.WARN, logger, "message: ${body}")
-		.to("json-validator:" + schemaPath)
-		.to("log:json-validation?showHeaders=true");
-
-//		.log(LoggingLevel.WARN, logger, "validation: ${body}");
-	}
-
-	public String getSchemaPath() {
-		return schemaPath;
+		.unmarshal().jacksonxml()
+		.setBody().simple("$simple{body[shipto][name]}")
+		.to("log:xml-validation?showHeaders=true");	
 	}
 
 	public String getSourceEndpoint() {

@@ -3,8 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>camel-example-json</artifactId>
-	<packaging>jar</packaging>
+	<artifactId>camel-example-json-dataformat</artifactId>
 	<parent>
 		<groupId>com.talend.se.platform</groupId>
 		<artifactId>camel-example-parent</artifactId>
@@ -12,27 +11,17 @@
 		<relativePath>../camel-example-parent/pom.xml</relativePath>
 	</parent>
 
-	<name>platform :: apache :: camel :: example :: json</name>
-	<description>json data format and schema validation example</description>
-
+	<name>platform :: apache :: camel :: example :: json :: dataformat</name>
+	<description>Camel JSON dataformat example</description>
+	
 	<properties>
 	</properties>
 
 	<dependencies>
 		<dependency>
-			<groupId>com.networknt</groupId>
-			<artifactId>json-schema-validator</artifactId>
-			<version>0.1.25</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-json-validator</artifactId>
+			<artifactId>camel-jackson</artifactId>
 		</dependency>
-
-		<!-- dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-simple</artifactId> 
-			</dependency -->
-
 	</dependencies>
-
+	
 </project>

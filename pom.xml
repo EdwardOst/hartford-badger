@@ -31,7 +31,11 @@
 		<module>camel-example-parent</module>
 		<module>camel-example-avro</module>
 		<module>camel-example-json</module>
-		<module>dynamic-endpoint</module>
+		<module>camel-example-spring-boot</module>
 		<module>camel-spring-boot-bom</module>
+		<module>camel-dynamic-endpoint</module>
+		<module>camel-example-xml</module>
+		<module>camel-example-xml-dataformat</module>
+		<module>camel-example-json-dataformat</module>
 	</modules>
 </project>

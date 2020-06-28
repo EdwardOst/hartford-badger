@@ -1,133 +1,85 @@
 package com.talend.se.platform.camel.tde;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Map;
-
 import org.apache.camel.builder.RouteBuilder;
 
-public class BindingComponent extends RouteBuilder {
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
-    private String name;
-    private String routeId;
-    private String fromUri;
-    private String toUri;
-    private Map<String, String> attributes;
-    
-    public BindingComponent() {
-    }
-    
-    public BindingComponent(String name, String routeId, String from, String to, Map<String, String> attributes) {
-        this.name = name;
-        this.routeId = routeId;
-        this.fromUri = from;
-        this.toUri = to;
-        this.attributes = attributes;
-    }
-    
-    public static BindingComponentBuilder builder() {
-    	return new BindingComponentBuilder();
-    }
+import lombok.Builder;
+import lombok.Singular;
+import lombok.Value;
+import lombok.With;
 
+@Builder(toBuilder=true)
+@Value
+@With
+@JsonDeserialize(builder = BindingComponent.BindingComponentBuilder.class)
+public class BindingComponent {
+
+    private final String name;
+    private final String routeId;
+    private final String fromUri;
+    private final String toUri;
+    @Singular private Map<String, String> attributes;
+    @JsonIgnore private final RouteBuilder routeBuilder = new RouteBuilder() {
+	    @Override
+	    public void configure() throws Exception {
+	        from(fromUri)
+	                .routeId(routeId)
+	                .to(toUri);
+	    }
+    };
+    
+    private static ObjectMapper objectMapper = null;
+    private static ObjectMapper getObjectMapper() {
+    	if (BindingComponent.objectMapper == null) {
+    		BindingComponent.objectMapper = new ObjectMapper();
+    	}
+    	return BindingComponent.objectMapper;
+    }
+    
+    public static BindingComponent from(String json) throws JsonParseException, JsonMappingException, IOException {
+    	ObjectMapper mapper = BindingComponent.getObjectMapper();
+    	return mapper.readValue(json, BindingComponent.class);
+    }
+    
+    public static BindingComponent from(File jsonFile) throws JsonParseException, JsonMappingException, IOException {
+    	ObjectMapper mapper = BindingComponent.getObjectMapper();
+    	return mapper.readValue(jsonFile, BindingComponent.class);
+    }
+    
+    public static BindingComponent fromJson(String json, ObjectMapper mapper) throws JsonParseException, JsonMappingException, IOException {
+		return mapper.readValue(json, BindingComponent.class);
+    }
+    
+    public String toString() {
+    	ObjectMapper mapper = BindingComponent.getObjectMapper();
+		String result;
+		try {
+			result = mapper.writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			throw new  RuntimeException(e);
+		}
+		return result;
+    }
+    
+    @JsonPOJOBuilder(withPrefix = "")
     public static class BindingComponentBuilder {
-        private String name;
-        private String routeId;
-        private String fromUri;
-        private String toUri;
-        private Map<String, String> attributes;
-
-        BindingComponentBuilder() {
-        }
-
-        public BindingComponentBuilder name(String name) {
-        	this.name =  name;
-        	return this;
-        }
-        
-        public BindingComponentBuilder routeId(String routeId) {
-        	this.routeId =  routeId;
-        	return this;
-        }
-
-        public BindingComponentBuilder fromUri(String fromUri) {
-        	this.fromUri =  fromUri;
-        	return this;
-        }
-    
-        public BindingComponentBuilder toUri(String toUri) {
-        	this.toUri =  toUri;
-        	return this;
-        }
-        
-        public BindingComponentBuilder attribute(String attrKey, String attrValue) {
-            if (this.attributes == null) {
-            	this.attributes = new java.util.HashMap<>();
-            	}
-            this.attributes.put(attrKey, attrValue);
-            return this;        	
-        }
-
-        public BindingComponentBuilder attributes(Map<String, String> attributes) {
-            if (this.attributes == null) {
-            	this.attributes = new java.util.HashMap<>();
-            	}
-        	this.attributes.putAll(attributes);
-        	return this;
-        }
-        
-        public BindingComponentBuilder clearAttributes() {
-        	if (this.attributes != null) {
-        		this.attributes.clear();
-        	}
-        	return this;
-        }
-    
-        public BindingComponent build() {
-        	return new BindingComponent(this.name, this.routeId, this.fromUri, this.toUri, this.attributes);
-        }
-        
-    }
-    
-    
-    public String getName() {
-        return name;
-    }
-    
-    public void setName(String name) {
-        this.name = name;
+    	
+    	// exclude routeBuilder from Builder and exclude it from Jackson serialization
+    	@JsonIgnore 
+    	private BindingComponentBuilder routeBuilder(RouteBuilder routeBuilder) {
+    		return this;
+    	}
     }
 
-
-    public String getFromUri() {
-        return fromUri;
-    }
-
-    public void setFromUri(String fromUri) {
-        this.fromUri = fromUri;
-    }
-
-    public String getToUri() {
-        return toUri;
-    }
-
-    public void setToUri(String toUri) {
-        this.toUri = toUri;
-    }
-
-    public String getRouteId() {
-        return routeId;
-    }
-
-    public void setRouteId(String routeId) {
-    	this.routeId = routeId;
-    }
-    
-    @Override
-    public void configure() throws Exception {
-        from(this.fromUri)
-                .routeId(this.getRouteId())
-                .to(this.toUri);
-    }
-
-    
-    
 }
-

@@ -19,6 +19,7 @@
 
 		<commons-lang.version>2.6</commons-lang.version>
 		<hamcrest.version>2.2</hamcrest.version>
+		<lombok.version>1.18.12</lombok.version>
 
 		<!-- These properties must match those in the tesb-parent. While it would 
 			be preferable to have a single point of control, that does not seem possible 
@@ -41,10 +42,21 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+
+
 		<dependency>
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-core</artifactId>
@@ -139,8 +151,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven-compiler-plugin.version}</version>
 				<configuration>
-					<maven.compiler.source>1.11</maven.compiler.source>
-					<maven.compiler.target>1.11</maven.compiler.target>
+					<source>1.11</source>
+					<target>1.11</target>
 				</configuration>
 			</plugin>
 			<plugin>

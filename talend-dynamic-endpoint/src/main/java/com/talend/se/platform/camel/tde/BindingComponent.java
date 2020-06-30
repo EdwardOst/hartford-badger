@@ -2,8 +2,8 @@ package com.talend.se.platform.camel.tde;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.Map;
+
 import org.apache.camel.builder.RouteBuilder;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -48,17 +48,19 @@ public class BindingComponent {
     }
     
     public static BindingComponent from(String json) throws JsonParseException, JsonMappingException, IOException {
-    	ObjectMapper mapper = BindingComponent.getObjectMapper();
-    	return mapper.readValue(json, BindingComponent.class);
+    	return from(json, BindingComponent.getObjectMapper());
+    }
+    
+    public static BindingComponent from(String json, ObjectMapper mapper) throws JsonParseException, JsonMappingException, IOException {
+		return mapper.readValue(json, BindingComponent.class);
     }
     
     public static BindingComponent from(File jsonFile) throws JsonParseException, JsonMappingException, IOException {
-    	ObjectMapper mapper = BindingComponent.getObjectMapper();
-    	return mapper.readValue(jsonFile, BindingComponent.class);
+    	return from(jsonFile, BindingComponent.getObjectMapper());
     }
     
-    public static BindingComponent fromJson(String json, ObjectMapper mapper) throws JsonParseException, JsonMappingException, IOException {
-		return mapper.readValue(json, BindingComponent.class);
+    public static BindingComponent from(File jsonFile, ObjectMapper mapper) throws JsonParseException, JsonMappingException, IOException {
+    	return mapper.readValue(jsonFile, BindingComponent.class);
     }
     
     public String toString() {

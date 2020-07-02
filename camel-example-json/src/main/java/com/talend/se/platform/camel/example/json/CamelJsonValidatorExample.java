@@ -15,9 +15,9 @@ public class CamelJsonValidatorExample extends RouteBuilder {
 	private final String targetEndpoint;
 	
 	public CamelJsonValidatorExample(final String filepath, final String filename, final String targetEndpoint) {
-		this.data_dir = Optional.of(filepath).orElseThrow( ()-> new NullArgumentException("filepath") );
-		this.filename = Optional.of(filename).orElseThrow( ()-> new NullArgumentException("filename") );
-		this.targetEndpoint = Optional.of(targetEndpoint).orElseThrow( ()-> new NullArgumentException("targetEndpoint") );
+		this.data_dir = Optional.ofNullable(filepath).orElseThrow( ()-> new NullArgumentException("filepath") );
+		this.filename = Optional.ofNullable(filename).orElseThrow( ()-> new NullArgumentException("filename") );
+		this.targetEndpoint = Optional.ofNullable(targetEndpoint).orElseThrow( ()-> new NullArgumentException("targetEndpoint") );
 		logger.info("Camel JsonValidator listening on '" + filepath + "' for file '" + filename + "'");
 	}
 

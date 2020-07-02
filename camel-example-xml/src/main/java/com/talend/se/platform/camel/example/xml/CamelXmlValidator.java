@@ -20,8 +20,8 @@ public class CamelXmlValidator extends RouteBuilder {
 	private String sourceEndpoint;
 	
 	public CamelXmlValidator(final String schema, final String sourceEndpoint) {
-		this.schemaPath = Optional.of(schema).orElseThrow( ()-> new NullArgumentException("schema_path") );
-		this.sourceEndpoint = Optional.of(sourceEndpoint).orElseThrow( ()-> new NullArgumentException("sourceEndpoint") );
+		this.schemaPath = Optional.ofNullable(schema).orElseThrow( ()-> new NullArgumentException("schema_path") );
+		this.sourceEndpoint = Optional.ofNullable(sourceEndpoint).orElseThrow( ()-> new NullArgumentException("sourceEndpoint") );
 	}
 	
 	@Override

@@ -23,7 +23,7 @@ public class CamelXmlDataFormat extends RouteBuilder {
 	private String sourceEndpoint;
 	
 	public CamelXmlDataFormat(final String sourceEndpoint) {
-		this.sourceEndpoint = Optional.of(sourceEndpoint).orElseThrow( ()-> new NullArgumentException("sourceEndpoint") );
+		this.sourceEndpoint = Optional.ofNullable(sourceEndpoint).orElseThrow( ()-> new NullArgumentException("sourceEndpoint") );
 	}
 	
 	@Override

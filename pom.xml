@@ -38,5 +38,6 @@
 		<module>camel-example-xml-dataformat</module>
 		<module>camel-example-json-dataformat</module>
 		<module>talend-dynamic-endpoint</module>
+		<module>camel-example-xslt</module>
 	</modules>
 </project>

@@ -1,4 +1,4 @@
-package com.talend.se.platform.camel.example.xml;
+package com.talend.se.platform.camel.example.xslt;
 
 import java.util.Optional;
 import org.apache.camel.builder.RouteBuilder;
@@ -6,19 +6,19 @@ import org.apache.commons.lang.NullArgumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class CamelXmlValidatorExample extends RouteBuilder {
+public class CamelXsltExample extends RouteBuilder {
 
-	private static Logger logger = LoggerFactory.getLogger(CamelXmlValidatorExample.class);
+	private static Logger logger = LoggerFactory.getLogger(CamelXsltExample.class);
 
 	private final String data_dir;
 	private final String filename;
 	private final String targetEndpoint;
 	
-	public CamelXmlValidatorExample(final String filepath, final String filename, final String targetEndpoint) {
+	public CamelXsltExample(final String filepath, final String filename, final String targetEndpoint) {
 		this.data_dir = Optional.ofNullable(filepath).orElseThrow( ()-> new NullArgumentException("filepath") );
 		this.filename = Optional.ofNullable(filename).orElseThrow( ()-> new NullArgumentException("filename") );
 		this.targetEndpoint = Optional.ofNullable(targetEndpoint).orElseThrow( ()-> new NullArgumentException("targetEndpoint") );
-		logger.info("Camel XmlValidator listening on '" + filepath + "' for file '" + filename + "'");
+		logger.info("Camel Xml data format listening on '" + filepath + "' for file '" + filename + "'");
 	}
 
 	@Override

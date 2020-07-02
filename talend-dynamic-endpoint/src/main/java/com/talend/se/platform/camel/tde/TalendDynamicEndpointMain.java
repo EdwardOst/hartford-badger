@@ -62,10 +62,14 @@ public class TalendDynamicEndpointMain extends Main {
 			@Override
 			public void configure() throws Exception {
 				from("timer:startBindingComponent?repeatCount=1&delay=3000")
-					.pollEnrich("file://" + Path.of(TDE_BINDING_COMPONENT_JSON_FILE).getParent() + "?noop=true&fileName=" + Path.of(TDE_BINDING_COMPONENT_JSON_FILE).getFileName())
+					.pollEnrich("file://" + Path.ofNullable(TDE_BINDING_COMPONENT_JSON_FILE).getParent() + "?noop=true&fileName=" + Path.ofNullable(TDE_BINDING_COMPONENT_JSON_FILE).getFileName())
 					.bean(BindingComponent.class, "from(String)")
 					.setBody(simple("${body.getRouteBuilder}"))
 					.bean(RouteFactory.class);
+				
+//				from("timer:readResource?repeatCount=1")
+//					.setBody(simple("resource:classpath:sample-person-messagejson"))
+//					.log("${body}");
 			}
 		};
 		

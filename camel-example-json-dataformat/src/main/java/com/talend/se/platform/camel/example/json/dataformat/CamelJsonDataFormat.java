@@ -21,7 +21,7 @@ public class CamelJsonDataFormat extends RouteBuilder {
 	private String sourceEndpoint;
 	
 	public CamelJsonDataFormat(final String sourceEndpoint) {
-		this.sourceEndpoint = Optional.of(sourceEndpoint).orElseThrow( ()-> new NullArgumentException("sourceEndpoint") );
+		this.sourceEndpoint = Optional.ofNullable(sourceEndpoint).orElseThrow( ()-> new NullArgumentException("sourceEndpoint") );
 	}
 	
 	@Override

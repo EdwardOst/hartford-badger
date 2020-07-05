@@ -23,11 +23,14 @@ public class CamelAvroDataFormatExample extends RouteBuilder {
 
 	@Override
 	public void configure() throws Exception {
-//		Person person = Person.newBuilder().setFirstName("Edward").setLastName("Ost").setAge(53).build();
-//		from("timer:mytimer?repeatCount=1")
-//		.setBody(() -> person)
-		from("file://" + this.data_dir + "?noop=true&fileName=" + this.filename)
-		.to(targetEndpoint);
+		Person person = Person.newBuilder().setFirstName("Edward").setLastName("Ost").setAge(53).build();
+		from("timer:mytimer?repeatCount=1")
+			.setBody(() -> person)
+			.to(targetEndpoint);
+
+//		Attempt to read an Avro file and send to Avro dataformat consumer fails in CamelAvroDataFormat route
+//		from("file://" + this.data_dir + "?noop=true&fileName=" + this.filename)
+//		.to(targetEndpoint);
 	}
 
 }

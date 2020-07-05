@@ -16,11 +16,11 @@ public class CamelAvroDataFormatMain extends Main {
 	public static void main(String[] args) throws Exception {
 		final String filepath = "/Users/eost/git/hartford-badger/camel-example-avro-dataformat/src/main/resources";
 		final String filename = "person.avro";
-		final String schema_path = filepath + "/person.avsc";
-		
-		final Schema schema = new org.apache.avro.Schema.Parser().parse(new File(schema_path));
+		final String schemaFileName = "person.avro.avsc";
 
-		CamelAvroDataFormatMain main = new CamelAvroDataFormatMain();
+		final CamelAvroDataFormatMain main = new CamelAvroDataFormatMain();
+		String schemaPath = main.getClass().getClassLoader().getResource(schemaFileName).getFile();
+		final Schema schema = new org.apache.avro.Schema.Parser().parse(new File(schemaPath));
 
 		CamelAvroDataFormat dataFormatRoute = new CamelAvroDataFormat(schema, MARSHAL_URI);
 		CamelAvroDataFormatExample exampleRoute = new CamelAvroDataFormatExample(filepath, filename, dataFormatRoute.getSourceEndpoint());

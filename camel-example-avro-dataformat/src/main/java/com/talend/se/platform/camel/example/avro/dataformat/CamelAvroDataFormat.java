@@ -27,20 +27,24 @@ public class CamelAvroDataFormat extends RouteBuilder {
 	
 	@Override
 	public void configure() throws Exception {
+		AvroDataFormat format = new AvroDataFormat(schema);
+
+		from(sourceEndpoint)
+		.marshal(format)
+		.to("log:avro?showHeaders=true")
+		.unmarshal(format)
+		.log(LoggingLevel.WARN, logger, "firstName: ${body.firstName}, lastName: ${body.lastName}, age: ${body.age}");
+
+//		This route would be used to consume a file in avro format, but it does not work and throws an error.
+//			org.apache.avro.AvroRuntimeException: Malformed data. Length is negative: -40
+//
 //		AvroDataFormat format = new AvroDataFormat(schema);
 //		from(sourceEndpoint)
-//		.marshal(format)
-//		.to("log:avro?showHeaders=true")
+//		.convertBodyTo(String.class)
 //		.unmarshal(format)
-//		.log(LoggingLevel.WARN, logger, "firstName: ${body.firstName}, lastName: ${body.lastName}, age: ${body.age}");
-
-		AvroDataFormat format = new AvroDataFormat(Person.SCHEMA$);
-		from(sourceEndpoint)
-		.convertBodyTo(String.class)
-		.unmarshal(format)
-		.log(LoggingLevel.WARN, logger, "firstName: ${body.firstName}, lastName: ${body.lastName}, age: ${body.age}")
-		.marshal(format)
-		.to("log:avro?showHeaders=true");
+//		.log(LoggingLevel.WARN, logger, "firstName: ${body.firstName}, lastName: ${body.lastName}, age: ${body.age}")
+//		.marshal(format)
+//		.to("log:avro?showHeaders=true");
 	}
 
 	public String getSourceEndpoint() {

@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>camel-example-avro-dataformat</artifactId>
+	<parent>
+		<groupId>com.talend.se.platform</groupId>
+		<artifactId>camel-example-parent</artifactId>
+		<version>${revision}</version>
+		<relativePath>../camel-example-parent/pom.xml</relativePath>
+	</parent>
+
+	<name>platform :: apache :: camel :: example :: avro :: dataformat</name>
+	<description>Camel Avro data format example</description>
+
+	<properties>
+		<!-- from camel parent -->
+		<jackson.version>1.9.12</jackson.version>
+
+		<avro.version>1.10.0</avro.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.avro</groupId>
+			<artifactId>avro</artifactId>
+			<version>${avro.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-avro</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.codehaus.jackson</groupId>
+					<artifactId>jackson-core-asl</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.codehaus.jackson</groupId>
+					<artifactId>jackson-mapper-asl</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+        <!-- use Jackson version as Camel -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- only necessary to generate Person.java from avro schema file.
+				Person.java is only necessary if not using using Avro generic record.  -->
+			<!-- plugin>
+				<groupId>org.apache.avro</groupId>
+				<artifactId>avro-maven-plugin</artifactId>
+				<version>${avro.version}</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>schema</goal>
+						</goals>
+						<configuration>
+							<sourceDirectory>${project.basedir}/src/main/resources/</sourceDirectory>
+							<outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin -->
+		</plugins>
+	</build>
+
+</project>

@@ -3,15 +3,16 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.talend.se.platform</groupId>
-  <artifactId>camel-example-xml-dataformat</artifactId>
+  <artifactId>camel-example-avro-dataformat</artifactId>
   <version>1.0.0</version>
-  <name>platform :: apache :: camel :: example :: xml :: dataformat</name>
-  <description>Camel XML dataformat example</description>
+  <name>platform :: apache :: camel :: example :: avro :: dataformat</name>
+  <description>Camel Avro data format example</description>
   <properties>
     <karaf.version>4.2.7</karaf.version>
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     <spring.version>5.1.9.RELEASE</spring.version>
     <activemq.version>5.15.10</activemq.version>
+    <jackson.version>1.9.12</jackson.version>
     <hamcrest.version>2.2</hamcrest.version>
     <flatten-maven-plugin.version>1.2.1</flatten-maven-plugin.version>
     <commons-lang.version>2.6</commons-lang.version>
@@ -19,14 +20,43 @@
     <lombok.version>1.18.12</lombok.version>
     <cxf.version>3.3.4</cxf.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <avro.version>1.10.0</avro.version>
     <tesb.version>7.3.1</tesb.version>
     <camel.version>2.24.2</camel.version>
   </properties>
   <dependencies>
     <dependency>
+      <groupId>org.apache.avro</groupId>
+      <artifactId>avro</artifactId>
+      <version>1.10.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-jacksonxml</artifactId>
+      <artifactId>camel-avro</artifactId>
       <version>2.24.2</version>
+      <scope>compile</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>jackson-core-asl</artifactId>
+          <groupId>org.codehaus.jackson</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jackson-mapper-asl</artifactId>
+          <groupId>org.codehaus.jackson</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.jackson</groupId>
+      <artifactId>jackson-core-asl</artifactId>
+      <version>1.9.12</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.jackson</groupId>
+      <artifactId>jackson-mapper-asl</artifactId>
+      <version>1.9.12</version>
       <scope>compile</scope>
     </dependency>
     <dependency>

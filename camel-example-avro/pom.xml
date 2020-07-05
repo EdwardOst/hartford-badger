@@ -3,32 +3,26 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.talend.se.hartford.badger</groupId>
-	<artifactId>camel-avro</artifactId>
+	<artifactId>camel-example-avro</artifactId>
 	<parent>
-		<groupId>com.talend.se.hartford</groupId>
-		<artifactId>badger-parent</artifactId>
+		<groupId>com.talend.se.platform</groupId>
+		<artifactId>camel-example-parent</artifactId>
 		<version>${revision}</version>
-        <relativePath>../badger-parent/pom.xml</relativePath>
+		<relativePath>../camel-example-parent/pom.xml</relativePath>
 	</parent>
 
 	<name>platform :: apache :: camel :: example :: avro</name>
-	<description>avro data format example</description>
+	<description>Camel Avro component example</description>
 
 	<properties>
 	</properties>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>com.talend.se.platform</groupId>
-				<artifactId>tesb</artifactId>
-				<version>7.3.1</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-avro</artifactId>
+		</dependency>
+	</dependencies>
 
 
 </project>

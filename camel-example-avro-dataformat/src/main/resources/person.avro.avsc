@@ -1,0 +1,15 @@
+{
+  "type" : "record",
+  "name" : "Person",
+  "namespace" : "com.talend.se.platform.camel.example.avro.dataformat",
+  "fields" : [ {
+    "name" : "firstName",
+    "type" : "string"
+  }, {
+    "name" : "lastName",
+    "type" : "string"
+  }, {
+    "name" : "age",
+    "type" : "int"
+  } ]
+}

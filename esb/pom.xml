@@ -14,32 +14,50 @@
 	</parent>
 
 	<name>platform :: apache :: esb</name>
-	<description>Platform pom that uses dependencyManagement imports of parent poms from component Apache projects to establish a consistent baseline set of dependency versions for comparison with the talend-esb platform pom.</description>
+	<description>Platform pom that uses dependencyManagement imports of parent poms from component Apache projects to establish a consistent baseline set of dependency versions for alignment with the talend-esb platform pom.</description>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- note that the order is important here. Specific components must come 
+				prior to composite components in order to ensure specific versions are preserved. -->
+			<dependency>
+				<groupId>com.talend.se.platform</groupId>
+				<artifactId>cxf-bom</artifactId>
+				<classifier></classifier>
+				<version>${project.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.talend.se.platform</groupId>
+				<artifactId>camel-bom</artifactId>
+				<classifier></classifier>
+				<version>${project.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.talend.se.platform</groupId>
+				<artifactId>camel-bom</artifactId>
+				<version>${project.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.talend.se.platform</groupId>
+				<artifactId>karaf-bom</artifactId>
+				<version>${project.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>flatten-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>io.repaint.maven</groupId>
-				<artifactId>tiles-maven-plugin</artifactId>
-				<extensions>true</extensions>
-				<configuration>
-					<buildSmells>dependencymanagement</buildSmells>
-					<filtering>true</filtering>
-					<applyBefore>com.talend.se.platform:tesb-parent</applyBefore>
-					<tiles>
-						<tile>com.talend.se.platform:tile-apache-license:${project.version}</tile>
-						<!-- note that the order is important here. Specific components must come 
-							prior to composite components in order to ensure specific versions are preserved. -->
-						<!-- tile>com.talend.se.platform:tile-cxf-bom:${project.version}</tile -->
-						<tile>com.talend.se.platform:tile-camel-bom:${project.version}</tile>
-						<!-- tile>com.talend.se.platform:tile-activemq-bom:${project.version}</tile -->
-						<!--  tile>com.talend.se.platform:tile-karaf-bom:${project.version}</tile -->
-					</tiles>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

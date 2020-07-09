@@ -67,6 +67,23 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.camel</groupId>
+				<artifactId>camel-maven-plugin</artifactId>
+				<version>${camel.version}</version>
+				<configuration>
+					<!--  Override the default Spring application context file uri META-INF/spring/.xml* 
+					Paths may be split using a semi-colon. -->
+					<!-- applicationContextUri>META-INF/spring/*.xml;YOUR_FILE_NAME_IN_THE_CLASS_PATH.xml</applicationContextUri -->
+					<!-- optional, default value: org.apache.camel.spring.Main -->
+					<!-- mainClass>mypackage.boot.camel.CamelStartup</mainClass -->
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.karaf.tooling</groupId>
+				<artifactId>karaf-maven-plugin</artifactId>
+				<version>${karaf.version}</version>
+			</plugin>
 		</plugins>
 	</build>
 

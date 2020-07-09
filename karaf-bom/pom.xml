@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>camel-bom</artifactId>
+	<artifactId>karaf-bom</artifactId>
 	<packaging>pom</packaging>
 	<parent>
 		<groupId>com.talend.se.platform</groupId>
@@ -12,15 +12,15 @@
 		<relativePath>../tesb-parent/pom.xml</relativePath>
 	</parent>
 
-	<name>platform :: apache :: camel</name>
-	<description>Align dependencyManagement import from org.apache.camel:camel-parent with Talend project version.</description>
+	<name>platform :: apache :: karaf</name>
+	<description>Align dependencyManagement import from org.apache.karaf:karaf with Talend project version.</description>
 
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>org.apache.camel</groupId>
-				<artifactId>camel-parent</artifactId>
-				<version>${camel.version}</version>
+				<groupId>org.apache.karaf</groupId>
+				<artifactId>karaf</artifactId>
+				<version>${karaf.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -32,16 +32,9 @@
 		<pluginManagement>
 			<plugins>
 				<plugin>
-					<groupId>org.apache.camel</groupId>
-					<artifactId>camel-maven-plugin</artifactId>
-					<version>${camel.version}</version>
-					<configuration>
-						<!--  Override the default Spring application context file uri META-INF/spring/.xml* 
-						Paths may be split using a semi-colon. -->
-						<!-- applicationContextUri>META-INF/spring/*.xml;YOUR_FILE_NAME_IN_THE_CLASS_PATH.xml</applicationContextUri -->
-						<!-- optional, default value: org.apache.camel.spring.Main -->
-						<!-- mainClass>mypackage.boot.camel.CamelStartup</mainClass -->
-					</configuration>
+					<groupId>org.apache.karaf.tooling</groupId>
+					<artifactId>karaf-maven-plugin</artifactId>
+					<version>${karaf.version}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>

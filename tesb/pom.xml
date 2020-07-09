@@ -41,6 +41,13 @@ Such projects should import the org.springframework.boot:spring-boot-dependencie
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<dependency>
+				<groupId>com.talend.se.platform</groupId>
+				<artifactId>spring-bom</artifactId>
+				<version>${project.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -49,20 +56,6 @@ Such projects should import the org.springframework.boot:spring-boot-dependencie
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>flatten-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>io.repaint.maven</groupId>
-				<artifactId>tiles-maven-plugin</artifactId>
-				<extensions>true</extensions>
-				<configuration>
-					<buildSmells>dependencymanagement</buildSmells>
-					<filtering>true</filtering>
-					<applyBefore>com.talend.se.platform:tesb-parent</applyBefore>
-					<tiles>
-						<tile>com.talend.se.platform:apache-license:${project.version}</tile>
-						<tile>com.talend.se.platform:tile-spring-bom:${project.version}</tile>
-					</tiles>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

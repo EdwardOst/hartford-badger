@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>activemq-bom</artifactId>
+	<packaging>pom</packaging>
+	<parent>
+		<groupId>com.talend.se.platform</groupId>
+		<artifactId>tesb-parent</artifactId>
+		<version>${revision}</version>
+		<relativePath>../tesb-parent/pom.xml</relativePath>
+	</parent>
+
+	<name>platform :: apache :: activemq</name>
+	<description>Align dependencyManagement import from org.apache.activemq:activemq-parent with Talend project version.</description>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.apache.activemq</groupId>
+				<artifactId>activemq-parent</artifactId>
+				<version>${activemq.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

@@ -19,13 +19,11 @@
 	<modules>
 		<module>badger-parent</module>
 		<module>tesb-parent</module>
-		<module>tile-apache-license</module>
-		<module>tile-tesb-versions</module>
-		<module>tile-cxf-bom</module>
 		<module>camel-bom</module>
-		<module>tile-activemq-bom</module>
-		<module>tile-karaf-bom</module>
-		<module>tile-spring-bom</module>
+		<module>activemq-bom</module>
+		<module>karaf-bom</module>
+		<module>cxf-bom</module>
+		<module>spring-bom</module>
 		<module>esb</module>
 		<module>tesb</module>
 		<module>camel-example-parent</module>

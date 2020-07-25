@@ -3,16 +3,22 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.talend.se.platform</groupId>
 	<artifactId>camel-example-parent</artifactId>
 	<version>${revision}</version>
 	<packaging>pom</packaging>
+	<parent>
+		<groupId>com.talend.se.platform</groupId>
+		<artifactId>tesb-parent</artifactId>
+		<version>7.3.1</version>
+		<relativePath/>  <!-- use repository -->
+	</parent>
 
 	<name>platform :: apache :: camel :: example :: parent</name>
 	<description>Camel examples parent for a separate example pom inheritance</description>
 
 	<properties>
-		<revision>1.0.0</revision>
+		<!-- example pom hierarchy uses same version number as platform, but could be independent -->
+		<revision>7.3.1</revision>
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
 		<flatten-maven-plugin.version>1.2.1</flatten-maven-plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -20,17 +26,6 @@
 		<commons-lang.version>2.6</commons-lang.version>
 		<hamcrest.version>2.2</hamcrest.version>
 		<lombok.version>1.18.12</lombok.version>
-
-		<!-- These properties must match those in the tesb-parent. While it would 
-			be preferable to have a single point of control, that does not seem possible 
-			with Maven. These properties are not necessary for bom imports, but they 
-			are necessary for other plugins. -->
-		<tesb.version>7.3.1</tesb.version>
-		<cxf.version>3.3.4</cxf.version>
-		<camel.version>2.24.2</camel.version>
-		<activemq.version>5.15.10</activemq.version>
-		<karaf.version>4.2.7</karaf.version>
-		<spring.version>5.1.9.RELEASE</spring.version>
 	</properties>
 
 	<dependencyManagement>

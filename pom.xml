@@ -38,5 +38,6 @@
 		<module>talend-dynamic-endpoint</module>
 		<module>camel-example-xslt</module>
 		<module>camel-example-avro-dataformat</module>
+		<module>hal-browser</module>
 	</modules>
 </project>

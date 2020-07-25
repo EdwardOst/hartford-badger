@@ -42,7 +42,7 @@ public class TestJsonSchemaValidation extends CamelTestSupport {
 	@Test
 	public void testMissingRequiredField() throws IOException, CamelExecutionException {
 		final String filename = "sample-person-message-invalid-missing-last-name.json";
-		String message = Files.readString(Path.ofNullable(DATA_DIR + "/" + filename));
+		String message = Files.readString(Path.of(DATA_DIR + "/" + filename));
 
 		thrown.expect(CamelExecutionException.class);
 		thrown.expectCause(new JsonValidationMatches("required", "1028", "lastName"));
@@ -66,7 +66,7 @@ public class TestJsonSchemaValidation extends CamelTestSupport {
 	@Test
 	public void testExtraField() throws IOException, CamelExecutionException {
 		final String filename = "sample-person-message-invalid-extra-field.json";
-		String message = Files.readString(Path.ofNullable(DATA_DIR + "/" + filename));
+		String message = Files.readString(Path.of(DATA_DIR + "/" + filename));
 
 		thrown.expect(CamelExecutionException.class);
 		thrown.expectCause(new JsonValidationMatches("additionalProperties", "1001", "extra_field"));
@@ -90,7 +90,7 @@ public class TestJsonSchemaValidation extends CamelTestSupport {
 	@Test
 	public void testNonNumericField() throws IOException, CamelExecutionException {
 		final String filename = "sample-person-message-invalid-non-numeric-age.json";
-		String message = Files.readString(Path.ofNullable(DATA_DIR + "/" + filename));
+		String message = Files.readString(Path.of(DATA_DIR + "/" + filename));
 
 		thrown.expect(CamelExecutionException.class);
 		thrown.expectCause(new JsonValidationMatches("type", "1029", "string"));
@@ -114,7 +114,7 @@ public class TestJsonSchemaValidation extends CamelTestSupport {
 	@Test
 	public void testValidMessage() throws IOException, CamelExecutionException {
 		final String filename = "sample-person-message.json";
-		String message = Files.readString(Path.ofNullable(DATA_DIR + "/" + filename));
+		String message = Files.readString(Path.of(DATA_DIR + "/" + filename));
 
 		String result = fluentTemplate()
 							.withBody(message)
